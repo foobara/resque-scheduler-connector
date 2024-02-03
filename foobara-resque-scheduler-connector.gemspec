@@ -1,4 +1,4 @@
-require_relative "lib/foobara/resque_scheduler_connector/version"
+require_relative "src/version"
 
 Gem::Specification.new do |spec|
   spec.name = "foobara-resque-scheduler-connector"
