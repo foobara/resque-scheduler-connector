@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "lib/foobara/resque_scheduler_connector/version"
 
 Gem::Specification.new do |spec|
