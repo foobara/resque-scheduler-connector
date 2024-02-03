@@ -11,3 +11,6 @@
 .rspec_status
 
 /.idea/
+
+.env.local
+.env.*.local
