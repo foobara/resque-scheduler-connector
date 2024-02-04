@@ -9,7 +9,7 @@ require "simplecov"
 require "foobara/load_dotenv"
 
 # TODO: setup boot pattern here
-Foobara::LoadDotenv.run!(env: "development")
+Foobara::LoadDotenv.run!(env: "test")
 
 SimpleCov.start do
   # enable_coverage :branch
