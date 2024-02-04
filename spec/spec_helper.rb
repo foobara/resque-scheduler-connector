@@ -1,3 +1,5 @@
+ENV["FOOBARA_ENV"] = "test"
+
 require "bundler/setup"
 
 require "pry"
@@ -5,11 +7,6 @@ require "pry-byebug"
 require "rspec/its"
 require "rack/test"
 require "simplecov"
-
-require "foobara/load_dotenv"
-
-# TODO: setup boot pattern here
-Foobara::LoadDotenv.run!(env: "test")
 
 SimpleCov.start do
   # enable_coverage :branch

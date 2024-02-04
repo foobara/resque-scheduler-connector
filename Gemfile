@@ -11,6 +11,7 @@ gem "foobara-util", github: "foobara/util"
 
 # Development dependencies go here
 gem "foobara-dotenv-loader", github: "foobara/dotenv-loader"
+# gem "foobara-dotenv-loader", path: "../dotenv-loader"
 gem "foobara-resque-connector", github: "foobara/resque-connector"
 gem "foobara-rubocop-rules", github: "foobara/rubocop-rules"
 gem "foobara-spec-helpers", github: "foobara/spec-helpers"
