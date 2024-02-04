@@ -7,7 +7,7 @@ module Foobara
     class << self
       def reset_all
         # TODO: protect against this in production
-        Resque.redis.flushdb
+        ResqueConnector.reset_all
       end
     end
   end
