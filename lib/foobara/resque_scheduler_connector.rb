@@ -1,5 +1,6 @@
 require "foobara/all"
-require "foobara/command_connectors"
+require "foobara/resque_connector"
+require "resque-scheduler"
 
 module Foobara
   module ResqueSchedulerConnector

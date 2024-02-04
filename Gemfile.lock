@@ -13,6 +13,13 @@ GIT
       dotenv
 
 GIT
+  remote: https://github.com/foobara/resque-connector.git
+  revision: a90f2b21d863ad84b15ccaca2c8feee4ac9c1426
+  specs:
+    foobara-resque-connector (0.1.0)
+      resque
+
+GIT
   remote: https://github.com/foobara/rubocop-rules.git
   revision: 6bf641ef5a3018051420a5642cd87b59dfb2e50f
   specs:
@@ -201,6 +208,7 @@ PLATFORMS
 DEPENDENCIES
   foobara!
   foobara-dotenv-loader!
+  foobara-resque-connector!
   foobara-resque-scheduler-connector!
   foobara-rubocop-rules!
   foobara-spec-helpers!
