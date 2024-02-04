@@ -6,6 +6,11 @@ require "rspec/its"
 require "rack/test"
 require "simplecov"
 
+require "foobara/load_dotenv"
+
+# TODO: setup boot pattern here
+Foobara::LoadDotenv.run!(env: "development")
+
 SimpleCov.start do
   # enable_coverage :branch
   minimum_coverage line: 100
@@ -31,9 +36,6 @@ RSpec.configure do |config|
   # config.raise_errors_for_deprecations!
 end
 
-require "foobara/load_dotenv"
-
-Foobara::LoadDotenv.run!(env: "test")
-
-require "foobara/resque_scheduler_connector"
 require "foobara/spec_helpers/all"
+
+require_relative "../local_playground"
