@@ -35,18 +35,22 @@ module Foobara
       # And in this context maybe that should be the transformed command?
       # So TransformedCommand is connector specific? And some connectors might have no TransformedCommand?
       def connect(command_class, ...)
-        transformed_command_class = super(command_class, ...)
+        transformed_command_classes = super(command_class, ...)
 
-        if command_class.is_a?(Class) && command_class < Command
-          command_name = "#{transformed_command_class.full_command_name}AsyncAt"
+        Util.array(transformed_command_classes).each do |transformed_command_class|
+          command_class = transformed_command_class.command_class
 
-          klass = Util.make_class(command_name, Commands::RunCommandAsyncAt)
+          if command_class.is_a?(Class) && command_class < Command
+            command_name = "#{transformed_command_class.full_command_name}AsyncAt"
 
-          klass.resque_scheduler_connector = self
-          klass.target_command_class = transformed_command_class
+            klass = Util.make_class(command_name, Commands::RunCommandAsyncAt)
+
+            klass.resque_scheduler_connector = self
+            klass.target_command_class = transformed_command_class
+          end
         end
 
-        transformed_command_class
+        transformed_command_classes
       end
 
       def cron(crontab)
