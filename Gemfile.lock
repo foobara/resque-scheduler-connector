@@ -1,6 +1,6 @@
 GIT
   remote: foobara
-  revision: 8c83cf4d1c9096e800991953d4f73ff90af7d0af
+  revision: 1c4162461275d971b2d0a5c3f27a01ec3456a630
   branch: main
   specs:
     foobara (0.0.1)
@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/resque-connector.git
-  revision: a90f2b21d863ad84b15ccaca2c8feee4ac9c1426
+  revision: 87b7e9699c0d55c05f6a16bc0e57fb24f98f9429
   specs:
     foobara-resque-connector (0.1.0)
       resque
