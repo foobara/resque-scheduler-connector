@@ -3,6 +3,28 @@ module Foobara
     class ResqueSchedulerConnector < CommandConnector
       module Commands
         class RunCommandAsyncAt < Command
+          class BothInAndAtProvidedError < Foobara::Value::DataError
+            class << self
+              def context_type_declaration
+                {
+                  in: :number,
+                  at: :datetime
+                }
+              end
+            end
+          end
+
+          class NoInOrAtProvidedError < Foobara::Value::DataError
+            class << self
+              def context_type_declaration
+                {}
+              end
+            end
+          end
+
+          possible_error BothInAndAtProvidedError
+          possible_error NoInOrAtProvidedError
+
           class << self
             attr_reader :target_command_class
             attr_accessor :resque_scheduler_connector
@@ -15,8 +37,7 @@ module Foobara
               inputs inputs: target_command_class.inputs_type.declaration_data,
                      # Do we really need to support both at and in?
                      at: :datetime,
-                     # unsure if we want some kind of timespan object here or a numeric
-                     in: :duck
+                     in: :number
             end
           end
 
@@ -34,12 +55,12 @@ module Foobara
           def validate
             if at
               if self.in
-                # TODO: add runtime error instead
-                raise "can't set both at and in"
+                add_input_error BothInAndAtProvidedError.new(context: { at:, in: },
+                                                             message: "cannot specify both in and at")
               end
             elsif !self.in
-              # TODO: add runtime error instead
-              raise "must provide either in or at"
+              # TODO: annoying to have to pass context: {}
+              add_input_error NoInOrAtProvidedError.new(message: "must provide either in or at", context: {})
             end
           end
 
