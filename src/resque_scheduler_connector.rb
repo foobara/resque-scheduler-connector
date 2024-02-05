@@ -48,6 +48,43 @@ module Foobara
 
         transformed_command_class
       end
+
+      def cron(crontab)
+        crontab.each do |cron_entry|
+          new_schedule_entry = build_resque_schedule_entry(*cron_entry)
+
+          Resque.schedule = Resque.schedule.merge(new_schedule_entry)
+        end
+      end
+
+      private
+
+      def build_resque_schedule_entry(cron, command_class, inputs = nil, description = command_class.description)
+        command_name = command_class.full_command_name
+
+        h = {
+          cron:,
+          class: ResqueConnector::CommandJob.name,
+          queue: resque_connector.command_name_to_queue[command_name],
+          args: {
+            command_name:
+          }
+        }
+
+        h[:description] = description if description
+
+        if inputs
+          h[:args][:inputs] = command_class.inputs_type.process_value!(inputs)
+        end
+
+        connector_name = resque_connector.name
+
+        if connector_name
+          h[:args][:connector_name] = connector_name
+        end
+
+        { command_name.to_sym => h }
+      end
     end
   end
 end
