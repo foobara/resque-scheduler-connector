@@ -34,10 +34,19 @@ module Foobara
 
               # Not using attributes DSL because in is a reserved word but too obvious an attribute name to not use here
               # TODO: should be able to pass the inputs_type here not only the declaration_data
-              inputs inputs: target_command_class.inputs_type.declaration_data,
-                     # Do we really need to support both at and in?
-                     at: :datetime,
-                     in: :number
+              inputs_type = target_command_class.inputs_type
+
+              h = {
+                # Do we really need to support both at and in?
+                at: :datetime,
+                in: :number
+              }
+
+              if inputs_type
+                h[:inputs] = inputs_type.declaration_data
+              end
+
+              inputs h
             end
           end
 
