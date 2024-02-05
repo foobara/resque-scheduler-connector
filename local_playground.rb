@@ -12,9 +12,11 @@ require "foobara/resque_scheduler_connector"
 
 redis_url = ENV.fetch("REDIS_URL", nil)
 
-unless ENV["REDIS_URL"]
+unless redis_url
+  # :nocov:
   raise NoRedisUrlError,
         'Must set ENV["REDIS_URL"] if trying to initialize RedisCrudDriver with no arguments'
+  # :nocov:
 end
 
-Resque.redis = Redis.new(url: ENV.fetch("REDIS_URL", nil))
+Resque.redis = Redis.new(url: redis_url)
