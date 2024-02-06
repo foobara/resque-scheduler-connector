@@ -1,27 +1,27 @@
 GIT
   remote: foobara
-  revision: 6440a1f44143b55a349752a381c1642766f4c53c
+  revision: f1bb85b42bea232e4aab18ebc1da9c196c3897c4
   branch: main
   specs:
     foobara (0.0.1)
 
 GIT
   remote: https://github.com/foobara/dotenv-loader.git
-  revision: a5d6435081b8e954a7f175b859d39946c5ce41a2
+  revision: 15bd91f9f7b2793c1766584e8661c87a5c81085d
   specs:
     foobara-dotenv-loader (0.1.0)
       dotenv
 
 GIT
   remote: https://github.com/foobara/resque-connector.git
-  revision: 89a957ff279e37e11a73175f257a998e2bd35117
+  revision: 05d6cf5a43eab1f949a7a8e97fa0e22c373acb14
   specs:
     foobara-resque-connector (0.1.0)
       resque
 
 GIT
   remote: https://github.com/foobara/rubocop-rules.git
-  revision: 6bf641ef5a3018051420a5642cd87b59dfb2e50f
+  revision: ea100ea86b708a441ef66ce0861dc72237316f2a
   specs:
     foobara-rubocop-rules (0.0.1)
       rubocop
@@ -29,13 +29,13 @@ GIT
 
 GIT
   remote: https://github.com/foobara/spec-helpers.git
-  revision: ee5809a26ae9ee4bae8e29f77ef689192b399bec
+  revision: e4ecc7b01a73b08dc12bd7422162a6afb0abec89
   specs:
     foobara-spec-helpers (0.1.0)
 
 GIT
   remote: https://github.com/foobara/util.git
-  revision: 3ca2ea3f6bc84e5b02a0af0259e60031a0aa48d1
+  revision: 2eb1add2428bca2569b035ae57697e1aebaca931
   specs:
     foobara-util (0.1.0)
 
