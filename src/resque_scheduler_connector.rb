@@ -34,8 +34,16 @@ module Foobara
       # to express that. A way could be found, though. So probably creating a command class is better.
       # And in this context maybe that should be the transformed command?
       # So TransformedCommand is connector specific? And some connectors might have no TransformedCommand?
-      def connect(command_class, ...)
-        transformed_command_classes = super(command_class, ...)
+      def connect(registerable, ...)
+        if registerable.is_a?(::Module) && registerable.foobara_domain?
+          return registerable.foobara_all_command(mode: Namespace::LookupMode::DIRECT).map do |command_class|
+            unless command_class < ResqueConnector::RunCommandAsync
+              connect(command_class, ...)
+            end
+          end.compact
+        end
+
+        transformed_command_classes = super(registerable, ...)
 
         Util.array(transformed_command_classes).each do |transformed_command_class|
           command_class = transformed_command_class.command_class
