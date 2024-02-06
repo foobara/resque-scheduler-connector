@@ -25,8 +25,10 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
 
   before do
     stub_const "SPEC_RESULTS", {}
-    resque_command_connector.connect(command_class)
-    resque_scheduler_command_connector.connect(command_class)
+
+    command_class
+    resque_command_connector.connect(SomeOrg)
+    resque_scheduler_command_connector.connect(SomeOrg)
     resque_command_connector.connect(sub_command_class)
     resque_scheduler_command_connector.connect(sub_command_class)
   end
@@ -35,8 +37,21 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
     described_class.reset_all
   end
 
-  it "has a version number" do
-    expect(Foobara::ResqueSchedulerConnector::VERSION).to_not be_nil
+  it "connects commands" do
+    expect(resque_command_connector.command_registry.all_transformed_command_classes.map(&:full_command_name)).to eq(
+      [
+        "SomeOrg::SomeDomain::DoSomething",
+        "DoSomethingElse"
+      ]
+    )
+    expect(
+      resque_scheduler_command_connector.command_registry.all_transformed_command_classes.map(&:full_command_name)
+    ).to eq(
+      [
+        "SomeOrg::SomeDomain::DoSomething",
+        "DoSomethingElse"
+      ]
+    )
   end
 
   describe ".cron" do
