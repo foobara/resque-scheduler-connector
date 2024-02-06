@@ -97,7 +97,13 @@ module Foobara
           end
 
           def determine_queue
-            self.queue = resque_connector.command_name_to_queue[command_name]
+            command_class = target_command_class
+
+            if target_command_class < TransformedCommand
+              command_class = target_command_class.command_class
+            end
+
+            self.queue = resque_connector.command_name_to_queue[command_class.full_command_name]
           end
 
           def target_command_class
