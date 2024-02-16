@@ -43,22 +43,18 @@ module Foobara
           end.compact
         end
 
-        transformed_command_classes = super(registerable, ...)
+        exposed_commands = super(registerable, ...)
 
-        Util.array(transformed_command_classes).each do |transformed_command_class|
-          command_class = transformed_command_class.command_class
+        Util.array(exposed_commands).each do |exposed_command|
+          command_name = "#{exposed_command.full_command_name}AsyncAt"
 
-          if command_class.is_a?(Class) && command_class < Command
-            command_name = "#{transformed_command_class.full_command_name}AsyncAt"
+          klass = Util.make_class(command_name, Commands::RunCommandAsyncAt)
 
-            klass = Util.make_class(command_name, Commands::RunCommandAsyncAt)
-
-            klass.resque_scheduler_connector = self
-            klass.target_command_class = transformed_command_class
-          end
+          klass.resque_scheduler_connector = self
+          klass.target_command_class = exposed_command.transformed_command_class
         end
 
-        transformed_command_classes
+        exposed_commands
       end
 
       def cron(crontab)

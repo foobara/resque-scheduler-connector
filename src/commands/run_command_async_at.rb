@@ -43,7 +43,7 @@ module Foobara
               }
 
               if inputs_type
-                h[:inputs] = inputs_type.declaration_data
+                h[:inputs] = inputs_type
               end
 
               inputs h

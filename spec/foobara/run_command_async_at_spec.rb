@@ -25,10 +25,11 @@ RSpec.describe Foobara::CommandConnectors::ResqueSchedulerConnector::Commands::R
   before do
     stub_const "SPEC_RESULTS", {}
     resque_command_connector.connect(command_class)
-    resque_scheduler_command_connector.connect(command_class)
+    resque_scheduler_command_connector.connect(command_class, inputs_transformers: proc { |x| x })
   end
 
   after do
+    Foobara.reset_alls
     Foobara::ResqueSchedulerConnector.reset_all
   end
 

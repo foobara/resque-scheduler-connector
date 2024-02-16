@@ -1,6 +1,6 @@
 GIT
   remote: foobara
-  revision: f1bb85b42bea232e4aab18ebc1da9c196c3897c4
+  revision: b9299be2d490a4f45f6fd7a76bff5f4849149ffb
   branch: main
   specs:
     foobara (0.0.1)
@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/resque-connector.git
-  revision: 05d6cf5a43eab1f949a7a8e97fa0e22c373acb14
+  revision: 02f93505d3edb814545d63af926e6d7abf2b9ad6
   specs:
     foobara-resque-connector (0.1.0)
       resque
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/foobara/util.git
-  revision: 2eb1add2428bca2569b035ae57697e1aebaca931
+  revision: b2e2e9c04d866b26c21b6e223bc359c76fcea0f8
   specs:
     foobara-util (0.1.0)
 
@@ -121,9 +121,9 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (5.0.8)
+    redis (5.1.0)
       redis-client (>= 0.17.0)
-    redis-client (0.19.1)
+    redis-client (0.20.0)
       connection_pool
     redis-namespace (1.11.0)
       redis (>= 4)

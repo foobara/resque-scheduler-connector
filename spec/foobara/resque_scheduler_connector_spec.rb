@@ -29,11 +29,13 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
     command_class
     resque_command_connector.connect(SomeOrg)
     resque_scheduler_command_connector.connect(SomeOrg)
+    # Forcing it to be transformed to test more code paths
     resque_command_connector.connect(sub_command_class)
     resque_scheduler_command_connector.connect(sub_command_class)
   end
 
   after do
+    Foobara.reset_alls
     described_class.reset_all
   end
 
