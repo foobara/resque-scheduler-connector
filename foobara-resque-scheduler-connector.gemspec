@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "resque-scheduler"
 
+  spec.add_dependency "foobara"
+
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 end

@@ -43,7 +43,7 @@ module Foobara
           end.compact
         end
 
-        exposed_commands = super(registerable, ...)
+        exposed_commands = super
 
         Util.array(exposed_commands).each do |exposed_command|
           command_name = "#{exposed_command.full_command_name}AsyncAt"
