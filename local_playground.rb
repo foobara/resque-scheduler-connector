@@ -14,8 +14,7 @@ redis_url = ENV.fetch("REDIS_URL", nil)
 
 unless redis_url
   # :nocov:
-  raise NoRedisUrlError,
-        'Must set ENV["REDIS_URL"] if trying to initialize RedisCrudDriver with no arguments'
+  raise 'Must set ENV["REDIS_URL"] if trying to initialize RedisCrudDriver with no arguments'
   # :nocov:
 end
 
