@@ -44,6 +44,6 @@ push git commits and the created tag, and push the `.gem` file to [rubygems.org]
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/foobara-resque_scheduler_connector.
 
-## License
+## Licensing
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This project is licensed under the Mozilla Public License Version 2.0. Please see LICENSE.txt for more info.
