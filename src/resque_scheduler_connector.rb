@@ -82,7 +82,13 @@ module Foobara
         h[:description] = description if description
 
         if inputs
-          h[:args][:inputs] = command_class.inputs_type.process_value!(inputs)
+          # TODO: it would be nice to use a constructed type where all entities are converted to their primary key
+          # types so that we could validate inputs before stuffing them into Redis.  But for now we will just
+          # stick stuff in there raw because otherwise if we used inputs_type then primary key values would be
+          # cast to thunks and that would explode without a transaction.
+          serializer_class = CommandConnectors::Serializers::EntitiesToPrimaryKeysSerializer
+          serializer = serializer_class.new(detached_to_primary_key: true)
+          h[:args][:inputs] = serializer.serialize(inputs)
         end
 
         connector_name = resque_connector.name
