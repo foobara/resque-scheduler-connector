@@ -1,20 +1,30 @@
+require_relative "version"
+
 source "https://rubygems.org"
+ruby Foobara::ResqueSchedulerConnector::MINIMUM_RUBY_VERSION
 
 gemspec
 
-# Development dependencies go here
-gem "foobara-dotenv-loader"
-# gem "foobara-dotenv-loader", path: "../dotenv-loader"
-gem "foobara-resque-connector"
+# gem "foobara", path: "../foobara"
 # gem "foobara-resque-connector", path: "../resque-connector"
-gem "foobara-rubocop-rules"
-gem "foobara-spec-helpers"
-gem "guard-rspec"
-gem "pry"
-gem "pry-byebug"
-gem "rake"
-gem "rspec"
-gem "rspec-its"
-gem "rubocop-rake"
-gem "rubocop-rspec"
-gem "simplecov"
+
+group :development do
+  gem "foobara-rubocop-rules", ">= 1.0.0"
+end
+
+group :test do
+  gem "foobara-spec-helpers", "< 2.0.0"
+  gem "pry"
+  gem "pry-byebug"
+  gem "rspec"
+  gem "rspec-its"
+  gem "simplecov"
+end
+
+group :development, :test do
+  gem "foobara-dotenv-loader", "< 2.0.0"
+  gem "guard-rspec"
+  gem "rake"
+  gem "rubocop-rake"
+  gem "rubocop-rspec"
+end

@@ -1,9 +1,5 @@
 require_relative "version"
 
-local_ruby_version = File.read("#{__dir__}/.ruby-version").chomp
-local_ruby_version_minor = local_ruby_version[/\A(\d+\.\d+)\.\d+\z/, 1]
-minimum_ruby_version = "#{local_ruby_version_minor}.0"
-
 Gem::Specification.new do |spec|
   spec.name = "foobara-resque-scheduler-connector"
   spec.version = Foobara::ResqueSchedulerConnector::VERSION
@@ -13,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Connects Foobara commands to resque-scheduler"
   spec.homepage = "https://github.com/foobara/resque-scheduler-connector"
   spec.license = "MPL-2.0"
-  spec.required_ruby_version = ">= #{minimum_ruby_version}"
+  spec.required_ruby_version = Foobara::ResqueSchedulerConnector::MINIMUM_RUBY_VERSION
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -27,7 +23,8 @@ Gem::Specification.new do |spec|
     "CHANGELOG.md"
   ]
 
-  spec.add_dependency "foobara"
+  spec.add_dependency "foobara", ">= 0.1.1", "< 2.0.0"
+  spec.add_dependency "foobara-resque-connector", "< 2.0.0"
   spec.add_dependency "resque-scheduler"
 
   spec.require_paths = ["lib"]
