@@ -5,8 +5,8 @@ ruby Foobara::ResqueSchedulerConnector::MINIMUM_RUBY_VERSION
 
 gemspec
 
-# gem "foobara", path: "../foobara"
-# gem "foobara-resque-connector", path: "../resque-connector"
+gem "foobara", path: "../foobara"
+gem "foobara-resque-connector", path: "../resque-connector"
 
 group :development do
   gem "foobara-rubocop-rules", ">= 1.0.0"

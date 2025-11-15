@@ -1,5 +1,10 @@
 RSpec.describe Foobara::ResqueSchedulerConnector do
-  let(:command_class) do
+  after do
+    Foobara.reset_alls
+    described_class.reset_all
+  end
+
+  let!(:command_class) do
     stub_module "SomeOrg" do
       foobara_organization!
     end
@@ -20,23 +25,16 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
       description "do something else"
     end
   end
-  let(:resque_command_connector) { Foobara::CommandConnectors::ResqueConnector.new }
+  let!(:resque_command_connector) { Foobara::CommandConnectors::ResqueConnector.new }
   let(:resque_scheduler_command_connector) { Foobara::CommandConnectors::ResqueSchedulerConnector.new }
 
   before do
     stub_const "SPEC_RESULTS", {}
 
-    command_class
-    resque_command_connector.connect(SomeOrg)
     resque_scheduler_command_connector.connect(SomeOrg)
     # Forcing it to be transformed to test more code paths
     resque_command_connector.connect(sub_command_class)
     resque_scheduler_command_connector.connect(sub_command_class)
-  end
-
-  after do
-    Foobara.reset_alls
-    described_class.reset_all
   end
 
   it "connects commands" do
@@ -56,7 +54,7 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
     )
   end
 
-  describe ".cron" do
+  describe "#cron" do
     context "when scheduling a recurring command job" do
       let(:crontab) do
         [
@@ -75,7 +73,9 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
       # Flexing more paths through the code for coverage by giving a connector name.
       let(:resque_command_connector) { Foobara::CommandConnectors::ResqueConnector.new(name: "foo") }
       let(:resque_scheduler_command_connector) do
-        Foobara::CommandConnectors::ResqueSchedulerConnector.new(resque_connector: resque_command_connector)
+        Foobara::CommandConnectors::ResqueSchedulerConnector.new(resque_connector: resque_command_connector).tap do |o|
+          binding.pry
+        end
       end
 
       before do
@@ -113,5 +113,15 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
         )
       end
     end
+  end
+
+  describe "#connect" do
+    context "when using cron sugar" do
+      it "does not create the AsyncAt command"
+      context "mixing with other command connector options"
+      context "command doesn't take any inputs"
+    end
+
+    context "when specifying cron with cron: option instead of sugar"
   end
 end
