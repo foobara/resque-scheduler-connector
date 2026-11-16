@@ -1,4 +1,4 @@
-name: RSpec and Rubocop
+name: RSpec, Rubocop, and README lint
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    name: RSpec and Rubocop
+    name: RSpec, Rubocop, and README lint
     timeout-minutes: 3
     services:
       redis:
@@ -35,6 +35,8 @@ jobs:
         run: bundle exec rspec
       - name: Run rubocop
         run: bundle exec rubocop
+      - name: Lint README
+        run: bundle exec rake lint:readme
 #      - name: Upload coverage directory
 #        if: always()
 #        uses: actions/upload-artifact@v2
