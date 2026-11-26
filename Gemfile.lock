@@ -1,19 +1,4 @@
 PATH
-  remote: ../foobara
-  specs:
-    foobara (0.8.0)
-      foobara-lru-cache (< 2.0.0)
-      foobara-util (< 2.0.0)
-      inheritable-thread-vars (< 2.0.0)
-
-PATH
-  remote: ../resque-connector
-  specs:
-    foobara-resque-connector (0.1.1)
-      foobara (>= 0.1.1, < 2.0.0)
-      resque
-
-PATH
   remote: .
   specs:
     foobara-resque-scheduler-connector (0.0.3)
@@ -46,9 +31,16 @@ GEM
     ffi (1.17.4-x86_64-darwin)
     ffi (1.17.4-x86_64-linux-gnu)
     ffi (1.17.4-x86_64-linux-musl)
+    foobara (0.8.0)
+      foobara-lru-cache (< 2.0.0)
+      foobara-util (< 2.0.0)
+      inheritable-thread-vars (< 2.0.0)
     foobara-dotenv-loader (0.0.3)
       dotenv
     foobara-lru-cache (1.0.0)
+    foobara-resque-connector (0.1.1)
+      foobara (>= 0.1.1, < 2.0.0)
+      resque
     foobara-rubocop-rules (1.1.1)
       rubocop
       rubocop-rspec
@@ -226,9 +218,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  foobara!
   foobara-dotenv-loader (< 2.0.0)
-  foobara-resque-connector!
   foobara-resque-scheduler-connector!
   foobara-rubocop-rules (>= 1.0.0)
   foobara-spec-helpers (< 2.0.0)
@@ -264,10 +254,10 @@ CHECKSUMS
   ffi (1.17.4-x86_64-darwin) sha256=aa70390523cf3235096cf64962b709b4cfbd5c082a2cb2ae714eb0fe2ccda496
   ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
   ffi (1.17.4-x86_64-linux-musl) sha256=3fdf9888483de005f8ef8d1cf2d3b20d86626af206cbf780f6a6a12439a9c49e
-  foobara (0.8.0)
+  foobara (0.8.0) sha256=f78fb18c17421a616f9c794f302ffba7bf35f867845ca8af48fe7eb0984d443a
   foobara-dotenv-loader (0.0.3) sha256=04ad7c088dbcd1b81fc1bab01f4016b1237db1745753785700cb854180b09792
   foobara-lru-cache (1.0.0) sha256=ff9716e011a4642382dc0e1fd7a80751134b1fbf97d180fd333472a5d20f2029
-  foobara-resque-connector (0.1.1)
+  foobara-resque-connector (0.1.1) sha256=bfdeb65690a8b44d5acad248658300144ea647cc33fbfbbe2b886228c5252b7b
   foobara-resque-scheduler-connector (0.0.3)
   foobara-rubocop-rules (1.1.1) sha256=af7000f0c1dbf9a97dde78207c04a2a2b1b11726e616fe88ad223302e47b7b8f
   foobara-spec-helpers (0.1.1) sha256=3698009a860fef2f6c8ad24c9d54d87c0fcddcaf99ba60bf53998ee76a410cab

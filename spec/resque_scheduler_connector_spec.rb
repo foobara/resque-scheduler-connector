@@ -73,9 +73,7 @@ RSpec.describe Foobara::ResqueSchedulerConnector do
       # Flexing more paths through the code for coverage by giving a connector name.
       let(:resque_command_connector) { Foobara::CommandConnectors::ResqueConnector.new(name: "foo") }
       let(:resque_scheduler_command_connector) do
-        Foobara::CommandConnectors::ResqueSchedulerConnector.new(resque_connector: resque_command_connector).tap do |o|
-          binding.pry
-        end
+        Foobara::CommandConnectors::ResqueSchedulerConnector.new(resque_connector: resque_command_connector)
       end
 
       before do

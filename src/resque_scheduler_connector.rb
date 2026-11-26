@@ -87,7 +87,6 @@ module Foobara
 
         connector_name = resque_connector.name
 
-        binding.pry
         if connector_name
           h[:args][:connector_name] = connector_name
         end
