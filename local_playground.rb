@@ -13,9 +13,9 @@ require "foobara/resque_scheduler_connector"
 redis_url = ENV.fetch("REDIS_URL", nil)
 
 unless redis_url
-  # :nocov:
+  # simplecov:disable
   raise 'Must set ENV["REDIS_URL"] if trying to initialize RedisCrudDriver with no arguments'
-  # :nocov:
+  # simplecov:enable
 end
 
 Resque.redis = Redis.new(url: redis_url)

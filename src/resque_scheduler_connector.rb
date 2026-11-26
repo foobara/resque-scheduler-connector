@@ -5,11 +5,11 @@ module Foobara
         attr_accessor :command_class
 
         def initialize(command_class)
-          # :nocov:
+          # simplecov:disable
           self.command_class = command_class
 
           super("No command found for #{command_class}")
-          # :nocov:
+          # simplecov:enable
         end
       end
 
